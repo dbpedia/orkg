@@ -90,6 +90,11 @@
       </button>
 
       <button class="tab-button"
+              onclick="openTab(event, 'kgEvolutionTriplesTab')">
+        KG Evolution (Triples)
+      </button>
+
+      <button class="tab-button"
               onclick="openTab(event, 'kgVersionsTab')">
         KG Release Explorer
       </button>
@@ -123,9 +128,16 @@
     </div>
 
     <!-- =====================================
-         TAB 2 : KG Versions module
+         TAB 2 : KG Evolution triples module
     ====================================== -->
 
+    <div id="kgEvolutionTriplesTab" class="tab-content" >
+      <div id="kgEvolutionTriplesModule"></div>
+    </div>
+
+    <!-- =====================================
+         TAB 3 : KG Versions module
+    ====================================== -->
 
     <div id="kgVersionsTab" class="tab-content">
       <div id="kgVersionsModule"></div>
@@ -226,7 +238,8 @@
       kgId: "orkg",
       kgName: "ORKG",
       databus_endpoint: "https://databus.dev.dbpedia.link/sparql",
-      group: "https://databus.dev.dbpedia.link/fhofer/dbpedia-wikipedia-kg-dump"
+      moss_endpoint: "https://moss.dev.dbpedia.link/sparql",
+      group: "https://databus.dev.dbpedia.link/fhofer/orkg"
     };
 
     const databusEndpoint = context.databus_endpoint;
@@ -274,6 +287,10 @@
       document.getElementById("kgEvolutionModule")
     );
 
+    loadModule(
+      "https://m1ci.github.io/kg-modules/kg-evolution/index_triples.js",
+      document.getElementById("kgEvolutionTriplesModule")
+    );
 
     loadModule(
       "https://m1ci.github.io/kg-modules/kg-versions/index_size.js",
