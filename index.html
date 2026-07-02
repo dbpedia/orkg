@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ORKG Knowledge Graph</title>
+  <title>DBpedia Knowledge Graph Page | ORKG</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/styles.css">
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -12,77 +15,120 @@
 
 <body>
 
-  <!-- =====================================
-       HERO SECTION
-  ====================================== -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#">
+        <img
+          class="brand-logo"
+          src="https://upload.wikimedia.org/wikipedia/commons/c/cf/DBpedia_logo.svg"
+          alt="DBpedia logo"
+          loading="lazy"
+        />
+        <span class="brand-text">
+          <strong>Knowledge Graph Pages</strong>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Primary">
+        <a href="#insights">Insights</a>
+        <a href="#explorer">Explorer</a>
+        <a href="#tools">Tools</a>
+      </nav>
+
+      <a class="top-cta" id="databusTopLink" href="#" target="_blank" rel="noopener noreferrer">Open Databus</a>
+    </div>
+  </header>
 
   <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-main">
+        <p class="eyebrow">DBpedia KG Intelligence Studio</p>
+        <h1>ORKG Knowledge Graph</h1>
 
-    <div class="container hero-content">
+        <p id="kgAbstract"><span class="kg-abstract-text">The Open Research Knowledge Graph is an open knowledge graph that structures scientific papers into machine-readable representations. Instead of only storing metadata, it captures research elements like methods, datasets, and results. It also enables semantic comparison and querying of scientific contributions across papers, making it easier to discover relationships and synthesize knowledge across large bodies of research.</span> <a class="hero-main-link" href="https://orkg.org" target="_blank" rel="noopener noreferrer">ORKG Main Page</a></p>
 
-      <h1>ORKG Knowledge Graph</h1>
+        <div class="hero-taxonomy" aria-label="Domain and keywords">
+          <div class="taxonomy-group domain-group" id="domainGroup">
+            <span class="taxonomy-label">Domain</span>
+            <span class="chip chip-domain">Loading...</span>
+          </div>
 
-      <p id="kgAbstract">
-        The Open Research Knowledge Graph is an open knowledge graph that structures scientific papers into machine-readable representations. Instead of only storing metadata, it captures research elements like methods, datasets, and results. This enables easier comparison, reuse, and exploration of scientific knowledge across publications.
-      </p>
-      <p>
-        <i>Note: this is a first prototype of the DBpedia Knowledge Graph Pages</i>
-      </p>
+          <div class="taxonomy-group keyword-group" id="keywordGroup">
+            <span class="taxonomy-label">Keywords</span>
+            <span class="chip chip-keyword">Loading...</span>
+          </div>
+        </div>
 
-      <div class="hero-badges">
-        <div class="badge">Semantic Web</div>
-        <div class="badge">Knowledge Graphs</div>
-        <div class="badge">Open Science</div>
-        <div class="badge">Linked Data</div>
+        <div class="hero-actions">
+          <a class="hero-action-link action-evolution" href="#explorer" data-tab-target="kgEvolutionTab">Explore Growth Timeline</a>
+          <a class="hero-action-link action-releases" href="#explorer" data-tab-target="kgVersionsTab">Browse Releases</a>
+          <a class="hero-action-link action-tools" href="#tools">Explore Tools</a>
+        </div>
       </div>
 
-    </div>
+      <aside class="next-actions changelog-panel" aria-label="Recent ORKG Release Timeline">
+        <h2>Recent ORKG Release Timeline</h2>
+        <p>Recent published releases with quick stats from Databus.</p>
 
+        <ul class="release-timeline" id="releaseTimeline" aria-live="polite">
+          <li class="release-item muted">Loading latest release events...</li>
+        </ul>
+
+        <a class="changelog-link" href="#explorer" data-tab-target="kgVersionsTab">View releases →</a>
+      </aside>
+    </div>
   </section>
 
   <!-- =====================================
        MAIN CONTENT
   ====================================== -->
 
-  <div class="container">
+  <main class="container" id="insights">
 
     <!-- =====================================
          INFO CARDS
     ====================================== -->
 
-    <div class="cards">
+    <section class="cards stats-panel" aria-label="Knowledge graph public statistics">
 
-      <div class="card">
-        <h3>KG Evolution</h3>
-        <p>
-          Explore the growth of the ORKG through longitudinal statistics
-          and versioned snapshots of the knowledge graph.
-        </p>
-      </div>
+      <article class="card compact-card stat-card">
+        <p class="stat-value"><span class="value-main" id="factsValue">Loading...</span><span class="stat-delta-inline"><span class="delta-pill" id="factsDelta">--</span><span class="delta-context" id="factsDeltaContext">updating from endpoint</span></span></p>
+        <p class="stat-label">Facts (latest release)</p>
+        <p class="stat-note">Facts in the latest published ORKG release.</p>
+      </article>
 
-      <div class="card">
-        <h3>Version Archive</h3>
-        <p>
-          Browse downloadable releases published on DBpedia Databus,
-          including metadata and dataset distributions.
-        </p>
-      </div>
+      <article class="card compact-card stat-card">
+        <p class="stat-value"><span class="value-main">6.3M</span><span class="stat-delta-inline"><span class="delta-pill">+1.12%</span><span class="delta-context">since last extract</span></span></p>
+        <p class="stat-label">Distinct entities (latest release)</p>
+        <p class="stat-note">Uniquely identified entities in the KG.</p>
+      </article>
 
-      <div class="card">
-        <h3>Research Infrastructure</h3>
-        <p>
-          ORKG enables machine-readable scholarly communication and supports
-          FAIR knowledge publishing practices.
-        </p>
-      </div>
+      <article class="card compact-card stat-card">
+        <p class="stat-value"><span class="value-main" id="publishedDataValue">Loading...</span></p>
+        <p class="stat-label">Published data (all release)</p>
+        <p class="stat-note">All downloadable distributions across KG release history.</p>
+      </article>
 
-    </div>
+      <article class="card compact-card stat-card">
+        <p class="stat-value"><span class="value-main" id="trackedSnapshotsValue">Loading...</span></p>
+        <p class="stat-label">Tracked KG releases</p>
+        <p class="stat-note">Number of historical releases available on Databus.</p>
+      </article>
+
+
+    </section>
 
     <!-- =====================================
          TABS
     ====================================== -->
 
-    <div class="tabs">
+    <section class="explorer" id="explorer">
+      <div class="explorer-head">
+        <h2>KG Explorer</h2>
+        <p>Switch between modules and continue with a concrete action.</p>
+      </div>
+
+    <div class="tabs" role="tablist" aria-label="Knowledge graph modules">
 
       <button class="tab-button"
               onclick="openTab(event, 'kgEvolutionTab')">
@@ -174,7 +220,49 @@
 
     </div>
 -->
-  </div>
+    </section>
+
+    <section class="tools" id="tools">
+      <div class="tools-head">
+        <h2>Tools</h2>
+        <p>Practical options for downloading artifacts and setting up local querying.</p>
+      </div>
+
+      <div class="tools-grid">
+        <article class="tool-card">
+          <h3>Databus Python Download Client</h3>
+          <p>
+            Use the Databus Python client for scripted downloads, reproducible data pulls,
+            and automation in notebooks or pipelines.
+          </p>
+          <ul>
+            <li>Install the Python client in your environment.</li>
+            <li>Target your Databus group/artifact and required version.</li>
+            <li>Download only the distributions needed for analysis.</li>
+          </ul>
+          <p class="tool-tip">
+            Best for: repeatable downloads and CI-style workflows.
+          </p>
+        </article>
+
+        <article class="tool-card">
+          <h3>Virtuoso Quickstarter</h3>
+          <p>
+            Use Virtuoso Quickstarter to bootstrap a local SPARQL endpoint quickly
+            and explore downloaded RDF datasets with low setup effort.
+          </p>
+          <ul>
+            <li>Start a local Virtuoso instance with the quickstarter setup.</li>
+            <li>Load RDF files from Databus releases into graph namespaces.</li>
+            <li>Run SPARQL queries and validate local integration pipelines.</li>
+          </ul>
+          <p class="tool-tip">
+            Best for: local querying, testing mappings, and endpoint prototyping.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
 
   <footer class="footer">
 
@@ -183,21 +271,21 @@
       <div class="footer-item">
         <strong>About</strong>
         <p>
-          The <b>DBpedia Knowledge Graph Cards</b> is a modular interface for exploring Knowledge Graphs published via the DBpedia Knowledge Graph Intelligence Studio.
+          The <b>DBpedia Knowledge Graph Page</b> provides a compact interface for exploring domain-specific knowledge graphs.
         </p>
       </div>
 
       <div class="footer-item">
         <strong>Modules</strong>
         <p>
-          Contribute new <a href="https://github.com/m1ci/kg-modules" target="_blank">modules</a> for DBpedia KG Cards.
+          Contribute new <a href="https://github.com/m1ci/kg-modules" target="_blank">modules</a> for DBpedia Knowledge Graph Page.
         </p>
       </div>
 
       <div class="footer-item">
         <strong>Create a KG Card</strong>
         <p>
-          Check <a href="#">how to integrate your KG</a> and create DBpedia Knowledge Graph cards.
+          Check how to integrate your KG and create a DBpedia Knowledge Graph Page.
         </p>
       </div>
 
@@ -209,7 +297,7 @@
     </div>
 
     <div class="footer-bottom">
-      © 2026 DBpedia Knowledge Graph Cards · Built for Knowledge Graph research, development, innovation & exploration.
+      © 2026 DBpedia Knowledge Graph Page · Built for Knowledge Graph research, development, innovation & exploration.
     </div>
 
   </footer>
@@ -240,6 +328,20 @@
       databus_endpoint: "https://databus.dev.dbpedia.link/sparql",
       moss_endpoint: "https://moss.dev.dbpedia.link/sparql",
       group: "https://databus.dev.dbpedia.link/fhofer/orkg"
+    };
+
+    const setActionLinks = () => {
+      const links = [
+        ["databusTopLink", context.group],
+        ["mossLink", context.moss_endpoint]
+      ];
+
+      links.forEach(([id, href]) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.setAttribute("href", href);
+        }
+      });
     };
 
     const databusEndpoint = context.databus_endpoint;
@@ -275,6 +377,501 @@
     }
 
     // ---------------------------------------------
+    // FACTS TREND (LATEST VS PREVIOUS RELEASE)
+    // ---------------------------------------------
+    const queryFactsTrend = `
+      PREFIX databus: <https://dataid.dbpedia.org/databus#>
+      PREFIX void: <http://rdfs.org/ns/void#>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+      SELECT ?version (SUM(?triples) AS ?totalTriples)
+      WHERE {
+        {
+          SELECT ?version ?file (MAX(xsd:integer(?triples)) AS ?triples)
+          WHERE {
+            ?file a databus:Part ;
+                  void:triples ?triples .
+
+            FILTER(STRSTARTS(
+              STR(?file),
+              "https://databus.dev.dbpedia.link/fhofer/orkg"
+            ))
+
+            BIND(
+              STRBEFORE(
+                STRAFTER(
+                  STR(?file),
+                  "https://databus.dev.dbpedia.link/fhofer/orkg"
+                ),
+                "#"
+              ) AS ?path
+            )
+
+            BIND(
+              REPLACE(?path, "^.*/", "") AS ?version
+            )
+          }
+          GROUP BY ?version ?file
+        }
+      }
+      GROUP BY ?version
+      ORDER BY DESC(?version)
+      LIMIT 2
+    `;
+
+    const queryTaxonomy = `
+      PREFIX schema: <https://schema.org/>
+      PREFIX dcterms: <http://purl.org/dc/terms/>
+
+      SELECT * WHERE {
+        <https://databus.dbpedia.org/knowledge-graph-catalog/orkg>
+          schema:keywords ?keywords ;
+          dcterms:subject ?domain .
+      }
+    `;
+
+    const queryPublishedDataTotalSize = `
+      PREFIX dcat: <http://www.w3.org/ns/dcat#>
+      PREFIX databus: <https://dataid.dbpedia.org/databus#>
+      PREFIX dct: <http://purl.org/dc/terms/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+      SELECT (SUM(xsd:integer(?size)) AS ?totalSize)
+      WHERE {
+        ?version databus:group <https://databus.dev.dbpedia.link/fhofer/orkg> ;
+                 dcat:distribution ?distribution .
+
+        ?distribution dcat:byteSize ?size .
+      }
+    `;
+
+    const queryTrackedSnapshots = `
+      PREFIX dcat: <http://www.w3.org/ns/dcat#>
+      PREFIX databus: <https://dataid.dbpedia.org/databus#>
+      PREFIX dct: <http://purl.org/dc/terms/>
+
+      SELECT (COUNT(DISTINCT ?versionNumber) AS ?numVersions)
+      WHERE {
+        ?version databus:group <https://databus.dev.dbpedia.link/fhofer/orkg> ;
+                 dct:hasVersion ?versionNumber ;
+                 dcat:distribution ?distribution .
+      }
+    `;
+
+    const queryRecentReleaseSummaries = `
+      PREFIX dcat: <http://www.w3.org/ns/dcat#>
+      PREFIX databus: <https://dataid.dbpedia.org/databus#>
+      PREFIX dct: <http://purl.org/dc/terms/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+      SELECT ?version (SAMPLE(?issuedRaw) AS ?issued) (SUM(xsd:decimal(?sizeRaw)) AS ?totalSize)
+      WHERE {
+        ?release databus:group <https://databus.dev.dbpedia.link/fhofer/orkg> ;
+                 dct:hasVersion ?version .
+
+        OPTIONAL { ?release dct:issued ?issuedRaw . }
+
+        OPTIONAL {
+          ?release dcat:distribution ?distribution .
+          ?distribution dcat:byteSize ?sizeRaw .
+        }
+      }
+      GROUP BY ?version
+      ORDER BY DESC(?version)
+      LIMIT 4
+    `;
+
+    const formatInteger = (value) => {
+      return new Intl.NumberFormat("en").format(value);
+    };
+
+    const formatCompact = (value) => {
+      return new Intl.NumberFormat("en", {
+        notation: "compact",
+        maximumFractionDigits: 1
+      }).format(value);
+    };
+
+    const formatPercent = (value) => {
+      const sign = value > 0 ? "+" : "";
+      return `${sign}${value.toFixed(3)}%`;
+    };
+
+    const formatGigabytes = (bytes) => {
+      const oneGigabyte = 1_000_000_000;
+
+      if (bytes < oneGigabyte) {
+        const megabytes = bytes / 1_000_000;
+        return `${new Intl.NumberFormat("en", { maximumFractionDigits: 1 }).format(megabytes)} MB`;
+      }
+
+      const gigabytes = bytes / oneGigabyte;
+      return `${new Intl.NumberFormat("en", { maximumFractionDigits: 1 }).format(gigabytes)} GB`;
+    };
+
+    const formatRelativeTime = (isoDate) => {
+      if (!isoDate) {
+        return "Recently";
+      }
+
+      const timestamp = Date.parse(isoDate);
+      if (Number.isNaN(timestamp)) {
+        return "Recently";
+      }
+
+      const deltaMs = Date.now() - timestamp;
+      const minuteMs = 60 * 1000;
+      const hourMs = 60 * minuteMs;
+      const dayMs = 24 * hourMs;
+
+      if (deltaMs < hourMs) {
+        const minutes = Math.max(1, Math.round(deltaMs / minuteMs));
+        return `${minutes} minute${minutes === 1 ? "" : "s"} ago`;
+      }
+
+      if (deltaMs < dayMs) {
+        const hours = Math.max(1, Math.round(deltaMs / hourMs));
+        return `${hours} hour${hours === 1 ? "" : "s"} ago`;
+      }
+
+      const days = Math.max(1, Math.round(deltaMs / dayMs));
+      return `${days} day${days === 1 ? "" : "s"} ago`;
+    };
+
+    const buildTriplesByVersionQuery = (version) => {
+      return `
+        PREFIX void: <http://rdfs.org/ns/void#>
+        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+        SELECT (SUM(?triplesValue) AS ?totalTriples)
+        WHERE {
+          {
+            SELECT ?file (MAX(xsd:integer(?triples)) AS ?triplesValue)
+            WHERE {
+              ?file void:triples ?triples .
+
+              FILTER(STRSTARTS(
+                STR(?file),
+                "https://databus.dev.dbpedia.link/fhofer/orkg/orkg-daily-dump/${version}"
+              ))
+            }
+            GROUP BY ?file
+          }
+        }
+      `;
+    };
+
+    async function fetchFactsTrend() {
+      const url =
+        context.moss_endpoint +
+        "?query=" +
+        encodeURIComponent(queryFactsTrend) +
+        "&format=json" +
+        "&_=" +
+        Date.now();
+
+      const res = await fetch(url, { cache: "no-store" });
+      const data = await res.json();
+      const rows = data?.results?.bindings || [];
+
+      if (rows.length < 2) {
+        throw new Error("Insufficient trend data returned by endpoint.");
+      }
+
+      const latest = Number(rows[0].totalTriples.value);
+      const previous = Number(rows[1].totalTriples.value);
+      const latestVersion = rows[0].version.value;
+      const previousVersion = rows[1].version.value;
+
+      if (!Number.isFinite(latest) || !Number.isFinite(previous) || previous === 0) {
+        throw new Error("Invalid triples data returned by endpoint.");
+      }
+
+      const delta = ((latest - previous) / previous) * 100;
+
+      return {
+        latest,
+        delta,
+        latestVersion,
+        previousVersion
+      };
+    }
+
+    async function updateFactsStat() {
+      const valueEl = document.getElementById("factsValue");
+      const deltaEl = document.getElementById("factsDelta");
+      const deltaContextEl = document.getElementById("factsDeltaContext");
+
+      if (!valueEl || !deltaEl || !deltaContextEl) {
+        return;
+      }
+
+      try {
+        const { latest, delta } = await fetchFactsTrend();
+        valueEl.textContent = formatCompact(latest);
+        deltaEl.textContent = formatPercent(delta);
+        deltaContextEl.textContent = "since last release";
+      } catch (err) {
+        valueEl.textContent = "N/A";
+        deltaEl.textContent = "--";
+        deltaContextEl.textContent = "trend unavailable";
+        console.error(err);
+      }
+    }
+
+    async function fetchPublishedDataTotalSize() {
+      const endpoints = [context.moss_endpoint, context.databus_endpoint];
+
+      for (const endpoint of endpoints) {
+        const url =
+          endpoint +
+          "?query=" +
+          encodeURIComponent(queryPublishedDataTotalSize) +
+          "&format=json" +
+          "&_=" +
+          Date.now();
+
+        const res = await fetch(url, { cache: "no-store" });
+        const data = await res.json();
+        const totalSizeValue = data?.results?.bindings?.[0]?.totalSize?.value;
+        const totalSize = Number(totalSizeValue);
+
+        if (Number.isFinite(totalSize) && totalSize >= 0) {
+          return totalSize;
+        }
+      }
+
+      throw new Error("Published data size unavailable from MOSS and Databus endpoints.");
+    }
+
+    async function updatePublishedDataStat() {
+      const valueEl = document.getElementById("publishedDataValue");
+
+      if (!valueEl) {
+        return;
+      }
+
+      try {
+        const totalSize = await fetchPublishedDataTotalSize();
+        valueEl.textContent = formatGigabytes(totalSize);
+      } catch (err) {
+        valueEl.textContent = "N/A";
+        console.error(err);
+      }
+    }
+
+    async function fetchTaxonomy() {
+      const url =
+        context.moss_endpoint +
+        "?query=" +
+        encodeURIComponent(queryTaxonomy) +
+        "&format=json" +
+        "&_=" +
+        Date.now();
+
+      const res = await fetch(url, { cache: "no-store" });
+      const data = await res.json();
+      const rows = data?.results?.bindings || [];
+
+      if (rows.length === 0) {
+        throw new Error("No domain/keyword taxonomy returned by endpoint.");
+      }
+
+      const domain = rows[0]?.domain?.value || "";
+      const keywords = Array.from(
+        new Set(
+          rows
+            .map((row) => row?.keywords?.value)
+            .filter((value) => typeof value === "string" && value.trim().length > 0)
+        )
+      );
+
+      if (!domain || keywords.length === 0) {
+        throw new Error("Incomplete domain/keyword taxonomy returned by endpoint.");
+      }
+
+      return { domain, keywords };
+    }
+
+    async function fetchTrackedSnapshots() {
+      const url =
+        context.databus_endpoint +
+        "?query=" +
+        encodeURIComponent(queryTrackedSnapshots) +
+        "&format=json" +
+        "&_=" +
+        Date.now();
+
+      const res = await fetch(url, { cache: "no-store" });
+      const data = await res.json();
+      const numVersionsValue = data?.results?.bindings?.[0]?.numVersions?.value;
+      const numVersions = Number(numVersionsValue);
+
+      if (Number.isFinite(numVersions) && numVersions >= 0) {
+        return numVersions;
+      }
+
+      throw new Error("Tracked snapshots count unavailable from Databus endpoint.");
+    }
+
+    async function updateTrackedSnapshotsStat() {
+      const valueEl = document.getElementById("trackedSnapshotsValue");
+
+      if (!valueEl) {
+        return;
+      }
+
+      try {
+        const numVersions = await fetchTrackedSnapshots();
+        valueEl.textContent = formatInteger(numVersions);
+      } catch (err) {
+        valueEl.textContent = "N/A";
+        console.error(err);
+      }
+    }
+
+    async function fetchRecentReleaseSummaries() {
+      const url =
+        context.databus_endpoint +
+        "?query=" +
+        encodeURIComponent(queryRecentReleaseSummaries) +
+        "&format=json" +
+        "&_=" +
+        Date.now();
+
+      const res = await fetch(url, { cache: "no-store" });
+      const data = await res.json();
+      const rows = data?.results?.bindings || [];
+
+      if (rows.length === 0) {
+        throw new Error("No release summaries returned by Databus endpoint.");
+      }
+
+      const releases = await Promise.all(
+        rows.map(async (row) => {
+          const version = row?.version?.value || "unknown";
+          const issued = row?.issued?.value || "";
+          const totalSize = Number(row?.totalSize?.value || 0);
+
+          const triplesUrl =
+            context.moss_endpoint +
+            "?query=" +
+            encodeURIComponent(buildTriplesByVersionQuery(version)) +
+            "&format=json" +
+            "&_=" +
+            Date.now();
+
+          const triplesRes = await fetch(triplesUrl, { cache: "no-store" });
+          const triplesData = await triplesRes.json();
+          const totalTriples = Number(
+            triplesData?.results?.bindings?.[0]?.totalTriples?.value || 0
+          );
+
+          return {
+            version,
+            issued,
+            totalSize: Number.isFinite(totalSize) ? totalSize : 0,
+            totalTriples: Number.isFinite(totalTriples) ? totalTriples : 0
+          };
+        })
+      );
+
+      return releases;
+    }
+
+    function renderReleaseTimeline(releases) {
+      const listEl = document.getElementById("releaseTimeline");
+      if (!listEl) {
+        return;
+      }
+
+      listEl.innerHTML = "";
+
+      releases.forEach((release) => {
+        const item = document.createElement("li");
+        item.className = "release-item";
+
+        const age = document.createElement("p");
+        age.className = "release-age";
+        age.textContent = formatRelativeTime(release.issued);
+
+        const title = document.createElement("p");
+        title.className = "release-title";
+        title.textContent = `Release ${release.version} published`;
+
+        const meta = document.createElement("p");
+        meta.className = "release-meta";
+        meta.textContent = `${formatCompact(release.totalTriples)} facts · ${formatGigabytes(release.totalSize)}`;
+
+        item.appendChild(age);
+        item.appendChild(title);
+        item.appendChild(meta);
+        listEl.appendChild(item);
+      });
+    }
+
+    async function updateReleaseTimeline() {
+      const listEl = document.getElementById("releaseTimeline");
+      if (!listEl) {
+        return;
+      }
+
+      try {
+        const releases = await fetchRecentReleaseSummaries();
+        renderReleaseTimeline(releases);
+      } catch (err) {
+        listEl.innerHTML = '<li class="release-item muted">Timeline unavailable right now.</li>';
+        console.error(err);
+      }
+    }
+
+    function renderTaxonomyChip(targetEl, text, className) {
+      const chip = document.createElement("span");
+      chip.className = `chip ${className}`;
+      chip.textContent = text;
+      targetEl.appendChild(chip);
+    }
+
+    function renderDomainChip(targetEl, domainId) {
+      const chip = document.createElement("span");
+      chip.className = "chip chip-domain";
+      chip.textContent = domainId;
+      targetEl.appendChild(chip);
+    }
+
+    async function updateTaxonomy() {
+      const domainGroup = document.getElementById("domainGroup");
+      const keywordGroup = document.getElementById("keywordGroup");
+
+      if (!domainGroup || !keywordGroup) {
+        return;
+      }
+
+      const domainLabel = domainGroup.querySelector(".taxonomy-label");
+      const keywordLabel = keywordGroup.querySelector(".taxonomy-label");
+
+      if (!domainLabel || !keywordLabel) {
+        return;
+      }
+
+      try {
+        const { domain, keywords } = await fetchTaxonomy();
+
+        domainGroup.querySelectorAll(".chip").forEach((el) => el.remove());
+        keywordGroup.querySelectorAll(".chip").forEach((el) => el.remove());
+
+        renderDomainChip(domainGroup, domain);
+        keywords.forEach((keyword) => {
+          renderTaxonomyChip(keywordGroup, keyword, "chip-keyword");
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    const FACTS_REFRESH_MS = 60000;
+
+    // ---------------------------------------------
     // MODULE LOADER
     // ---------------------------------------------
     async function loadModule(url, el) {
@@ -308,6 +905,34 @@
     // INIT ON PAGE LOAD
     // ---------------------------------------------
     document.addEventListener("DOMContentLoaded", async () => {
+      setActionLinks();
+      updateFactsStat();
+      updatePublishedDataStat();
+      updateTrackedSnapshotsStat();
+      updateTaxonomy();
+      updateReleaseTimeline();
+      window.setInterval(updateFactsStat, FACTS_REFRESH_MS);
+      window.setInterval(updatePublishedDataStat, FACTS_REFRESH_MS);
+      window.setInterval(updateTrackedSnapshotsStat, FACTS_REFRESH_MS);
+      window.setInterval(updateReleaseTimeline, FACTS_REFRESH_MS);
+
+      document.querySelectorAll("[data-tab-target]").forEach((item) => {
+        item.addEventListener("click", (evt) => {
+          const tabId = item.getAttribute("data-tab-target");
+          if (!tabId) {
+            return;
+          }
+
+          const button = Array.from(document.querySelectorAll(".tab-button"))
+            .find((btn) => btn.getAttribute("onclick")?.includes(tabId));
+
+          if (button) {
+            evt.preventDefault();
+            window.openTab({ currentTarget: button }, tabId);
+            document.getElementById(tabId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
 
       // -------------------------
       // DEFAULT TAB FIX
