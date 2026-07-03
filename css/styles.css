@@ -852,10 +852,16 @@ main.container {
 
 .tool-tip {
   margin-top: 10px;
-  padding-top: 8px;
-  border-top: 1px dashed #cfdef5;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #cfdef5;
   color: #30537d;
-  font-weight: 600;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.tool-tip-near-title {
+  margin-top: 2px;
+  font-style: italic;
 }
 
 table {

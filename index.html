@@ -98,14 +98,14 @@
       </article>
 
       <article class="card compact-card stat-card">
-        <p class="stat-value"><span class="value-main">6.3M</span><span class="stat-delta-inline"><span class="delta-pill">+1.12%</span><span class="delta-context">since last extract</span></span></p>
+        <p class="stat-value"><span class="value-main">3.1M</span><span class="stat-delta-inline"><span class="delta-pill">+1.12%</span><span class="delta-context">since last release</span></span></p>
         <p class="stat-label">Distinct entities (latest release)</p>
         <p class="stat-note">Uniquely identified entities in the KG.</p>
       </article>
 
       <article class="card compact-card stat-card">
         <p class="stat-value"><span class="value-main" id="publishedDataValue">Loading...</span></p>
-        <p class="stat-label">Published data (all release)</p>
+        <p class="stat-label">Published data (all releases)</p>
         <p class="stat-note">All downloadable distributions across KG release history.</p>
       </article>
 
@@ -230,18 +230,20 @@
 
       <div class="tools-grid">
         <article class="tool-card">
-          <h3>Databus Python Download Client</h3>
+          <h3>Databus Python Client</h3>
           <p>
-            Use the Databus Python client for scripted downloads, reproducible data pulls,
-            and automation in notebooks or pipelines.
+            Use the Databus Python client to fetch ORKG releases in a reproducible way,
+            either for local analysis or automated workflows.
           </p>
-          <ul>
-            <li>Install the Python client in your environment.</li>
-            <li>Target your Databus group/artifact and required version.</li>
-            <li>Download only the distributions needed for analysis.</li>
-          </ul>
-          <p class="tool-tip">
-            Best for: repeatable downloads and CI-style workflows.
+          <p>
+            Get the latest ORKG release by running the following command in your terminal:
+          </p>
+          <pre><code>docker run --rm \
+  -v "$(pwd)":/data \
+  dbpedia/databus-python-client \
+  download https://databus.dev.dbpedia.link/fhofer/orkg</code></pre>
+          <p>
+            Check the <a href="https://github.com/dbpedia/databus-python-client#docker" target="_blank" rel="noopener noreferrer">Python client</a> for downloading and deploying datasets on DBpedia Databus.
           </p>
         </article>
 
