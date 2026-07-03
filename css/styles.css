@@ -203,11 +203,12 @@ a:hover {
 
 .hero-main-link {
   display: inline-flex;
-  border-radius: 10px;
-  float: right;
-  margin: 8px 0 4px 12px;
-  padding: 10px 14px;
-  font-size: 14px;
+  align-self: flex-end;
+  width: fit-content;
+  border-radius: 8px;
+  margin: 0;
+  padding: 7px 10px;
+  font-size: 13px;
   font-weight: 700;
   color: #ffffff;
   line-height: 1;
@@ -228,14 +229,13 @@ a:hover {
 
 @media (max-width: 740px) {
   .hero-main-link {
-    float: none;
-    margin: 10px 0 0;
+    margin: 0;
   }
 }
 
 .hero-taxonomy {
   margin-top: auto;
-  padding-top: 12px;
+  padding-top: 0px;
   display: grid;
   gap: 8px;
 }
@@ -848,6 +848,22 @@ main.container {
 
 .tool-card li + li {
   margin-top: 4px;
+}
+
+.tool-card pre {
+  margin: 10px 0 0;
+  padding: 10px;
+  border: 1px solid #d9e8fb;
+  border-radius: 8px;
+  background: #f3f8ff;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.tool-card pre code {
+  display: block;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .tool-tip {

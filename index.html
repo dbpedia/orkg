@@ -29,13 +29,6 @@
         </span>
       </a>
 
-      <nav class="top-nav" aria-label="Primary">
-        <a href="#insights">Insights</a>
-        <a href="#explorer">Explorer</a>
-        <a href="#tools">Tools</a>
-      </nav>
-
-      <a class="top-cta" id="databusTopLink" href="#" target="_blank" rel="noopener noreferrer">Open Databus</a>
     </div>
   </header>
 
@@ -45,7 +38,8 @@
         <p class="eyebrow">Powered by DBpedia KG Lifecycle Suite</p>
         <h1>ORKG Knowledge Graph</h1>
 
-        <p id="kgAbstract"><span class="kg-abstract-text">The Open Research Knowledge Graph is an open knowledge graph that structures scientific papers into machine-readable representations. Instead of only storing metadata, it captures research elements like methods, datasets, and results. It also enables semantic comparison and querying of scientific contributions across papers, making it easier to discover relationships and synthesize knowledge across large bodies of research.</span> <a class="hero-main-link" href="https://orkg.org" target="_blank" rel="noopener noreferrer">ORKG Main Page</a></p>
+        <p id="kgAbstract"><span class="kg-abstract-text">The Open Research Knowledge Graph is an open knowledge graph that structures scientific papers into machine-readable representations. Instead of only storing metadata, it captures research elements like methods, datasets, and results. It also enables semantic comparison and querying of scientific contributions across papers, making it easier to discover relationships and synthesize knowledge across large bodies of research.</span></p>
+        <a class="hero-main-link" href="https://orkg.org" target="_blank" rel="noopener noreferrer">ORKG Main Page</a>
 
         <div class="hero-taxonomy" aria-label="Domain and keywords">
           <div class="taxonomy-group domain-group" id="domainGroup">
@@ -225,7 +219,7 @@
     <section class="tools" id="tools">
       <div class="tools-head">
         <h2>Tools</h2>
-        <p>Practical options for downloading artifacts and setting up local querying.</p>
+        <p>Practical options for downloading ORKG and setting up local querying.</p>
       </div>
 
       <div class="tools-grid">
@@ -248,18 +242,17 @@
         </article>
 
         <article class="tool-card">
-          <h3>Virtuoso Quickstarter</h3>
+          <h3>Virtuoso SPARQL Endpoint Quickstarter</h3>
           <p>
-            Use Virtuoso Quickstarter to bootstrap a local SPARQL endpoint quickly
-            and explore downloaded RDF datasets with low setup effort.
+            Use Virtuoso Quickstarter to start a local SPARQL endpoint
+            and explore the latest ORKG release by running
+            the following commands in your terminal:
           </p>
-          <ul>
-            <li>Start a local Virtuoso instance with the quickstarter setup.</li>
-            <li>Load RDF files from Databus releases into graph namespaces.</li>
-            <li>Run SPARQL queries and validate local integration pipelines.</li>
-          </ul>
-          <p class="tool-tip">
-            Best for: local querying, testing mappings, and endpoint prototyping.
+          <pre><code>git clone https://github.com/dbpedia/virtuoso-sparql-endpoint-quickstart.git
+cd virtuoso-sparql-endpoint-quickstart
+COLLECTION_URI=https://databus.dbpedia.org/knowledge-graph-catalog/collections/orkg-latest-release VIRTUOSO_ADMIN_PASSWD=YourSecretPassword docker-compose up</code></pre>
+          <p>
+            Check the <a href="https://github.com/dbpedia/virtuoso-sparql-endpoint-quickstart" target="_blank" rel="noopener noreferrer">Virtuoso quickstarter</a> repository for setup details and configuration options.
           </p>
         </article>
       </div>
