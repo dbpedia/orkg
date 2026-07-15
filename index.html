@@ -44,12 +44,12 @@
         <div class="hero-taxonomy" aria-label="Domain and keywords">
           <div class="taxonomy-group domain-group" id="domainGroup">
             <span class="taxonomy-label">Domain</span>
-            <span class="chip chip-domain">Loading...</span>
+            <span class="chip chip-domain">-</span>
           </div>
 
           <div class="taxonomy-group keyword-group" id="keywordGroup">
             <span class="taxonomy-label">Keywords</span>
-            <span class="chip chip-keyword">Loading...</span>
+            <span class="chip chip-keyword">-</span>
           </div>
         </div>
 
@@ -86,7 +86,7 @@
     <section class="cards stats-panel" aria-label="Knowledge graph public statistics">
 
       <article class="card compact-card stat-card">
-        <p class="stat-value"><span class="value-main" id="factsValue">Loading...</span><span class="stat-delta-inline"><span class="delta-pill" id="factsDelta">--</span><span class="delta-context" id="factsDeltaContext">updating from endpoint</span></span></p>
+        <p class="stat-value"><span class="value-main" id="factsValue">-</span><span class="stat-delta-inline"><span class="delta-pill" id="factsDelta">--</span><span class="delta-context" id="factsDeltaContext">updating from endpoint</span></span></p>
         <p class="stat-label">Facts (latest release)</p>
         <p class="stat-note">Facts in the latest published ORKG release.</p>
       </article>
@@ -98,13 +98,13 @@
       </article>
 
       <article class="card compact-card stat-card">
-        <p class="stat-value"><span class="value-main" id="publishedDataValue">Loading...</span></p>
+        <p class="stat-value"><span class="value-main" id="publishedDataValue">-</span></p>
         <p class="stat-label">Published data (all releases)</p>
         <p class="stat-note">All downloadable distributions across KG release history.</p>
       </article>
 
       <article class="card compact-card stat-card">
-        <p class="stat-value"><span class="value-main" id="trackedSnapshotsValue">Loading...</span></p>
+        <p class="stat-value"><span class="value-main" id="trackedSnapshotsValue">-</span></p>
         <p class="stat-label">Tracked KG releases</p>
         <p class="stat-note">Number of historical releases available on Databus.</p>
       </article>
@@ -235,7 +235,7 @@
           <pre><code>docker run --rm \
   -v "$(pwd)":/data \
   dbpedia/databus-python-client \
-  download https://databus.dev.dbpedia.link/fhofer/orkg</code></pre>
+  download https://databus.dbpedia.org/knowledge-graph-catalog/orkg</code></pre>
           <p>
             Check the <a href="https://github.com/dbpedia/databus-python-client#docker" target="_blank" rel="noopener noreferrer">Python client</a> for downloading and deploying datasets on DBpedia Databus.
           </p>
@@ -267,21 +267,21 @@ COLLECTION_URI=https://databus.dbpedia.org/knowledge-graph-catalog/collections/o
       <div class="footer-item">
         <strong>About</strong>
         <p>
-          The <b>DBpedia Knowledge Graph Page</b> provides a compact interface for exploring domain-specific knowledge graphs.
+          The <b>DBpedia Knowledge Graph Pages</b> provide a compact interface for exploring domain-specific knowledge graphs.
         </p>
       </div>
 
       <div class="footer-item">
         <strong>Modules</strong>
         <p>
-          Contribute new <a href="https://github.com/m1ci/kg-modules" target="_blank">modules</a> for DBpedia Knowledge Graph Page.
+          Contribute new <a href="https://github.com/m1ci/kg-modules" target="_blank">modules</a> for DBpedia Knowledge Graph pages.
         </p>
       </div>
 
       <div class="footer-item">
         <strong>Create a KG Card</strong>
         <p>
-          Check how to integrate your KG and create a DBpedia Knowledge Graph Page.
+          Check <a href="https://kg-catalog.dbpedia.org/submit.html" target="_blank">how to integrate</a> your KG into the <a href="https://kg-catalog.dbpedia.org/" target="_blank">DBpedia Knowledge Graph Catalog</a>.
         </p>
       </div>
 
@@ -321,9 +321,9 @@ COLLECTION_URI=https://databus.dbpedia.org/knowledge-graph-catalog/collections/o
     const context = {
       kgId: "orkg",
       kgName: "ORKG",
-      databus_endpoint: "https://databus.dev.dbpedia.link/sparql",
+      databus_endpoint: "https://databus.dbpedia.org/sparql",
       moss_endpoint: "https://moss.dev.dbpedia.link/sparql",
-      group: "https://databus.dev.dbpedia.link/fhofer/orkg"
+      group: "https://databus.dbpedia.org/knowledge-graph-catalog/orkg"
     };
 
     const setActionLinks = () => {
@@ -390,14 +390,14 @@ COLLECTION_URI=https://databus.dbpedia.org/knowledge-graph-catalog/collections/o
 
             FILTER(STRSTARTS(
               STR(?file),
-              "https://databus.dev.dbpedia.link/fhofer/orkg"
+              "https://databus.dbpedia.org/knowledge-graph-catalog/orkg"
             ))
 
             BIND(
               STRBEFORE(
                 STRAFTER(
                   STR(?file),
-                  "https://databus.dev.dbpedia.link/fhofer/orkg"
+                  "https://databus.dbpedia.org/knowledge-graph-catalog/orkg"
                 ),
                 "#"
               ) AS ?path
@@ -434,7 +434,7 @@ COLLECTION_URI=https://databus.dbpedia.org/knowledge-graph-catalog/collections/o
 
       SELECT (SUM(xsd:integer(?size)) AS ?totalSize)
       WHERE {
-        ?version databus:group <https://databus.dev.dbpedia.link/fhofer/orkg> ;
+        ?version databus:group <https://databus.dbpedia.org/knowledge-graph-catalog/orkg> ;
                  dcat:distribution ?distribution .
 
         ?distribution dcat:byteSize ?size .
@@ -448,7 +448,7 @@ COLLECTION_URI=https://databus.dbpedia.org/knowledge-graph-catalog/collections/o
 
       SELECT (COUNT(DISTINCT ?versionNumber) AS ?numVersions)
       WHERE {
-        ?version databus:group <https://databus.dev.dbpedia.link/fhofer/orkg> ;
+        ?version databus:group <https://databus.dbpedia.org/knowledge-graph-catalog/orkg> ;
                  dct:hasVersion ?versionNumber ;
                  dcat:distribution ?distribution .
       }
@@ -462,7 +462,7 @@ COLLECTION_URI=https://databus.dbpedia.org/knowledge-graph-catalog/collections/o
 
       SELECT ?version (SAMPLE(?issuedRaw) AS ?issued) (SUM(xsd:decimal(?sizeRaw)) AS ?totalSize)
       WHERE {
-        ?release databus:group <https://databus.dev.dbpedia.link/fhofer/orkg> ;
+        ?release databus:group <https://databus.dbpedia.org/knowledge-graph-catalog/orkg> ;
                  dct:hasVersion ?version .
 
         OPTIONAL { ?release dct:issued ?issuedRaw . }
@@ -548,7 +548,7 @@ COLLECTION_URI=https://databus.dbpedia.org/knowledge-graph-catalog/collections/o
 
               FILTER(STRSTARTS(
                 STR(?file),
-                "https://databus.dev.dbpedia.link/fhofer/orkg/orkg-daily-dump/${version}"
+                "https://databus.dbpedia.org/knowledge-graph-catalog/orkg/orkg-daily-dump/${version}"
               ))
             }
             GROUP BY ?file
