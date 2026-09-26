@@ -139,6 +139,11 @@
         KG Release Explorer
       </button>
 
+      <button class="tab-button"
+              onclick="openTab(event, 'kgQualityTab')">
+        KG Quality
+      </button>
+
 <!--
       <button class="tab-button"
               onclick="openTab(event, 'helloTab')">
@@ -181,6 +186,11 @@
 
     <div id="kgVersionsTab" class="tab-content">
       <div id="kgVersionsModule"></div>
+    </div>
+
+    <!-- KG Quality module -->
+    <div id="kgQualityTab" class="tab-content">
+      <div id="kgQualityModule"></div>
     </div>
 
     <!-- =====================================
@@ -888,6 +898,11 @@ COLLECTION_URI=https://databus.dbpedia.org/knowledge-graph-catalog/collections/o
     loadModule(
       "https://m1ci.github.io/kg-modules/kg-versions/index_size.js",
       document.getElementById("kgVersionsModule")
+    );
+
+    loadModule(
+      "https://m1ci.github.io/kg-modules/kg-quality/index.js",
+      document.getElementById("kgQualityModule")
     );
 
 
